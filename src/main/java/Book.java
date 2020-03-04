@@ -52,7 +52,7 @@ public final class Book {
                 return res;
             }
         }
-        throw new IllegalArgumentException("Name " + fName + " not found");
+        throw new IllegalArgumentException("Name "+fName+" not found");
     }
 
     public void changeAdress(String cName, String nStreet, String nBld, String nApt){
@@ -65,7 +65,7 @@ public final class Book {
                 flag = true;
             }
         }
-        if (flag == false) throw new IllegalArgumentException("Name " + cName + " not found");
+        if (flag == false) throw new IllegalArgumentException("Name "+cName+" not found");
     }
 
     public static List<String> findStreet(String fStreet){
