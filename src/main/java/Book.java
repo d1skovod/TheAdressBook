@@ -1,4 +1,3 @@
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -10,11 +9,11 @@ public final class Book {
 
     private String name;
     private String street;
-    private int bld;
-    private int apt;
+    private String bld;
+    private String apt;
     private static LinkedList<Book> lst = new LinkedList<>();;
 
-    public Book(String name, String street, int bld, int apt) {
+    public Book(String name, String street, String bld, String apt) {
         this.name = name;
         this.street = street;
         this.bld = bld;
@@ -30,11 +29,11 @@ public final class Book {
         return street;
     }
 
-    public int getBld(){
+    public String getBld(){
         return bld;
     }
 
-    public int getApt(){
+    public String getApt(){
         return apt;
     }
 
@@ -46,23 +45,27 @@ public final class Book {
         lst.remove(person);
     }
 
-    public String getAdress(String fname){
+    public static String[] getAdress(String fName) {
         for(Book it: lst){
-            if (it.name.equals(fname)) {
-                return it.street+", "+it.bld+", apt "+it.apt;
+            if (it.name.equals(fName)) {
+                String[] res = {it.street, it.bld, it.apt};
+                return res;
             }
         }
-        return "No results found";
+        throw new IllegalArgumentException("Name " + fName + " not found");
     }
 
-    public void changeAdress(String cName, String nStreet, int nBld, int nApt){
+    public void changeAdress(String cName, String nStreet, String nBld, String nApt){
+        boolean flag = false;
         for (Book it: lst){
             if (it.name.equals(cName)) {
                 it.street = nStreet;
                 it.bld = nBld;
                 it.apt = nApt;
+                flag = true;
             }
         }
+        if (flag == false) throw new IllegalArgumentException("Name " + cName + " not found");
     }
 
     public static List<String> findStreet(String fStreet){
@@ -75,7 +78,7 @@ public final class Book {
         return res;
     }
 
-    public static List<String> findBld(String fStreet, int fBld){
+    public static List<String> findBld(String fStreet, String fBld){
         LinkedList <String> res = new LinkedList<>();
         for (Book it: lst){
             if (it.street.equals(fStreet) && it.bld == fBld){
