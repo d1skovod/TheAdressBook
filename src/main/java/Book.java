@@ -48,8 +48,7 @@ public final class Book {
     public static String[] getAdress(String fName) {
         for(Book it: lst){
             if (it.name.equals(fName)) {
-                String[] res = {it.street, it.bld, it.apt};
-                return res;
+                return new String[]{it.street, it.bld, it.apt};
             }
         }
         throw new IllegalArgumentException("Name "+fName+" not found");
@@ -65,7 +64,7 @@ public final class Book {
                 flag = true;
             }
         }
-        if (flag == false) throw new IllegalArgumentException("Name "+cName+" not found");
+        if (!flag) throw new IllegalArgumentException("Name "+cName+" not found");
     }
 
     public static List<String> findStreet(String fStreet){
@@ -81,7 +80,7 @@ public final class Book {
     public static List<String> findBld(String fStreet, String fBld){
         LinkedList <String> res = new LinkedList<>();
         for (Book it: lst){
-            if (it.street.equals(fStreet) && it.bld == fBld){
+            if (it.street.equals(fStreet) && it.bld.equals(fBld)){
                 res.add(it.name);
             }
         }
@@ -103,8 +102,8 @@ public final class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return bld == book.bld &&
-                apt == book.apt &&
+        return bld.equals(book.bld) &&
+                apt.equals(book.apt) &&
                 Objects.equals(name, book.name) &&
                 Objects.equals(street, book.street);
     }
