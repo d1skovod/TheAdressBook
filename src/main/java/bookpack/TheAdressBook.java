@@ -3,7 +3,7 @@ package bookpack;
 import java.util.*;
 
 public final class TheAdressBook {
-    public static void main(String[] args){ }
+    public static void main(String[] args){}
 
     private final LinkedList<Record> book;
 
